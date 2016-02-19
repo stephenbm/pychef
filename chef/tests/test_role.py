@@ -36,4 +36,3 @@ class RoleTestCase(ChefTestCase):
         for n in Role.list():
             self.assertNotEqual(n, name)
         self.assertFalse(Role(name).exists)
-        
