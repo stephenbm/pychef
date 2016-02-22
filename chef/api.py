@@ -13,7 +13,7 @@ import pkg_resources
 import requests
 
 from chef.auth import sign_request
-from chef.exceptions import ChefServerError, ChefServerNotFoundError
+from chef.exceptions import *
 from chef.rsa import Key
 from chef.utils import json
 from chef.utils.file import walk_backwards
@@ -220,6 +220,8 @@ class ChefAPI(object):
         response = self.request(method, path, headers, data)
         if response.status_code == 404:
             raise ChefServerNotFoundError(response.json()['error'])
+        if response.status_code == 405:
+            raise ChefServerNotAllowedError('%s %s not allowed' % (method, path))
         return response.json()
 
     def __getitem__(self, path):

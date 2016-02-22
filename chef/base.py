@@ -105,9 +105,12 @@ class ChefObject(six.with_metaclass(ChefObjectMeta, object)):
         api = api or self.api
         try:
             api.api_request('PUT', self.url, data=self)
-        except ChefServerNotFoundError as e:
+        except ChefServerNotFoundError:
             # If you get a 404 during a save, just create it instead
             # This mirrors the logic in the Chef code
+            api.api_request('POST', self.__class__.url, data=self)
+        except ChefServerNotAllowedError:
+            # If you get a 405 during a save, just create it instead
             api.api_request('POST', self.__class__.url, data=self)
 
     def delete(self, api=None):
