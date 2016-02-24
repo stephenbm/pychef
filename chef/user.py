@@ -3,6 +3,7 @@ import six
 from chef.api import ChefAPI
 from chef.base import ChefObject, ChefQuery
 
+
 class User(ChefObject):
     """A User group object."""
 
@@ -14,6 +15,7 @@ class User(ChefObject):
         'last_name': str,
         'display_name': str,
         'password': str,
+        'username': str,
         'create_key': bool
     }
 
@@ -39,18 +41,12 @@ class User(ChefObject):
 
     @classmethod
     def create(cls, name, api=None, **kwargs):
-        return super(User, cls).create(name, api=cls._user_api(api=api), **kwargs)
+        return super(User, cls).create(
+            name, api=cls._user_api(api=api), **kwargs
+        )
 
     def save(self, api=None):
         return super(User, self).save(api=User._user_api(api=api))
 
     def delete(self, api=None):
         return super(User, self).delete(api=User._user_api(api=api))
-
-    def to_dict(self):
-        d = super(User, self).to_dict()
-        d['username'] = d['name']
-        del d['name']
-        del d['json_class']
-        del d['chef_type']
-        return d

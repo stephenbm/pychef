@@ -2,6 +2,7 @@ import six
 import collections
 
 from chef.base import ChefObject
+from chef.acl import AclMixin
 from chef.exceptions import ChefError
 
 class NodeAttributes(collections.MutableMapping):
@@ -127,7 +128,7 @@ class NodeAttributes(collections.MutableMapping):
         return merged
 
 
-class Node(ChefObject):
+class Node(ChefObject, AclMixin):
     """A Chef node object.
 
     The Node object can be used as a dict-like object directly, as an alias for

@@ -1,7 +1,8 @@
 from chef.api import ChefAPI
 from chef.base import ChefObject
+from chef.acl import AclMixin
 
-class Client(ChefObject):
+class Client(ChefObject, AclMixin):
     """A Chef client object."""
 
     url = '/clients'

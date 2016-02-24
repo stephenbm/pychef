@@ -28,7 +28,7 @@ class ChefServerNotFoundError(ChefServerError):
 
 
 class ChefServerNotAllowedError(ChefServerError):
-    """A 405 Not Found server error."""
+    """A 405 Not Allowed server error."""
 
 
 class ChefAPIVersionError(ChefError):

@@ -1,6 +1,7 @@
 from chef.base import ChefObject
+from chef.acl import AclMixin
 
-class Environment(ChefObject):
+class Environment(ChefObject, AclMixin):
     """A Chef environment object.
 
     .. versionadded:: 0.2

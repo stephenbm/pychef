@@ -1,6 +1,7 @@
 from chef.base import ChefObject
+from chef.acl import AclMixin
 
-class Role(ChefObject):
+class Role(ChefObject, AclMixin):
     """A Chef role object."""
 
     url = '/roles'
