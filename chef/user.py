@@ -41,9 +41,10 @@ class User(ChefObject):
 
     @classmethod
     def create(cls, name, api=None, **kwargs):
-        return super(User, cls).create(
+        user = super(User, cls).create(
             name, api=cls._user_api(api=api), **kwargs
         )
+        return User(user.name)
 
     def save(self, api=None):
         return super(User, self).save(api=User._user_api(api=api))

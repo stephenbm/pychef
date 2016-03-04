@@ -12,3 +12,4 @@ from chef.environment import Environment
 from chef.search import Search
 from chef.group import Group
 from chef.user import User
+from chef.report import Report
