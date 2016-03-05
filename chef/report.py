@@ -18,6 +18,8 @@ class Report(object):
         full_url = '/reports/%s/runs?' % (search)
         full_url += 'from=%s' % cls._unix_stamp(start_time)
         full_url += '&until=%s' % cls._unix_stamp(end_time)
+        full_url += '&rows=%s' % rows
+        print full_url
         return api.api_request('GET',
             full_url,
             headers={'X-Ops-Reporting-Protocol-Version': '0.1.0'}
