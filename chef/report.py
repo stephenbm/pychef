@@ -14,9 +14,12 @@ class Report(object):
         search = node and 'nodes/%s' % node or 'org'
         api = api or ChefAPI.get_global()
         full_url = '/reports/%s/runs?' % (search)
-        start_time and full_url += 'from=%s' % cls._unix_stamp(start_time)
-        end_time and full_url += '&until=%s' % cls._unix_stamp(end_time)
-        rows and full_url += '&rows=%s' % rows
+        if start_time:
+            full_url = full_url + ('from=%s' % cls._unix_stamp(start_time))
+        if end_time:
+            full_url = full_url + ('&until=%s' % cls._unix_stamp(end_time))
+        if rows:
+            full_url = full_url + ('&rows=%s' % rows)
         return api.api_request('GET',
             full_url,
             headers={'X-Ops-Reporting-Protocol-Version': '0.1.0'}
