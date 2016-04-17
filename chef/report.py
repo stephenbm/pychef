@@ -1,5 +1,5 @@
 import time
-import datetime
+from datetime import datetime, timedelta
 from chef.api import ChefAPI
 from chef.base import ChefObject
 
@@ -16,8 +16,8 @@ class Report(object):
         full_url = '/reports/%s/runs?' % (search)
         if start_time:
             full_url = full_url + ('from=%s' % cls._unix_stamp(start_time))
-        if end_time:
-            full_url = full_url + ('&until=%s' % cls._unix_stamp(end_time))
+            full_url = full_url + ('&until=%s' % cls._unix_stamp(
+                end_time or (datetime.now() + timedelta(days=1))))
         if rows:
             full_url = full_url + ('&rows=%s' % rows)
         return api.api_request('GET',
