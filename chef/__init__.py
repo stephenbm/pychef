@@ -13,3 +13,4 @@ from chef.search import Search
 from chef.group import Group
 from chef.user import User
 from chef.report import Report
+from chef.pushy import Pushy
