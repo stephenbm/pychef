@@ -19,4 +19,4 @@ class Pushy(object):
             'run_timeout': run_timeout
         }
         api = api or ChefAPI.get_global()
-        return api.api_request('POST', url, data=data)
+        return api.api_request('POST', cls.url, data=data)
