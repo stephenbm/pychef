@@ -14,3 +14,4 @@ from chef.group import Group
 from chef.user import User
 from chef.report import Report
 from chef.pushy import Pushy
+from chef.cookbook import Cookbook
