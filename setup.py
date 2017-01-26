@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'steve-pychef',
-    version = '0.3.3',
+    version = '0.3.4',
     packages = find_packages(),
     author = 'Noah Kantrowitz',
     author_email = 'noah@coderanger.net',
