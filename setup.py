@@ -5,8 +5,8 @@ import os
 from setuptools import setup, find_packages
 
 setup(
-    name = 'PyChef',
-    version = '0.3.2',
+    name = 'steve-pychef',
+    version = '0.3.3',
     packages = find_packages(),
     author = 'Noah Kantrowitz',
     author_email = 'noah@coderanger.net',

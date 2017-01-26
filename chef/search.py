@@ -48,16 +48,20 @@ class Search(collections.Sequence):
 
     url = '/search'
 
-    def __init__(self, index, q='*:*', rows=1000, start=0, api=None):
+    def __init__(self, index, q='*:*', rows=1000, start=0, api=None, body=None):
         self.name = index
         self.api = api or ChefAPI.get_global()
         self._args = dict(q=q, rows=rows, start=start)
+        self.body = body
         self.url = self.__class__.url + '/' + self.name + '?' + six.moves.urllib.parse.urlencode(self._args)
 
     @property
     def data(self):
         if not hasattr(self, '_data'):
-            self._data = self.api[self.url]
+            if self.body:
+                self._data = self.api.api_request('POST', self.url, data=self.body)
+            else:
+                self._data = self.api[self.url]
         return self._data
 
     @property
